@@ -1,0 +1,16 @@
+<apex:page sidebar="false">
+    <apex:includeLightning />
+
+    <div id="lightning" />
+
+    <script>
+        $Lightning.use("skforce:SK_SetUpAuditTrailApp", function() {
+          $Lightning.createComponent("skforce:SK_SetUPAuditTrailCmp",
+          {  },
+          "lightning",
+          function(cmp) {
+            // do some stuff
+          });
+        });
+    </script>
+</apex:page>

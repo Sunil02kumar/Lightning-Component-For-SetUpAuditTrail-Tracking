@@ -1,0 +1,32 @@
+<aura:component controller="SK_GenericDataTableCmpController">
+    
+    <ltng:require styles="{!join(',', 
+                          $Resource.SK_DataTableResources + '/css/jquery.dataTables.css')}"
+                  scripts="{!join(',', 
+                           $Resource.SK_DataTableResources + '/js/jquery.min.js', 
+                           $Resource.SK_DataTableResources + '/js/jquery.dataTables.min.js')}"  
+                           afterScriptsLoaded="{!c.doInit}"/>
+	<aura:attribute name="fieldsAPINameList" type="string[]" default="['Name', 'Type']" required="true"/>
+    <aura:attribute name="columnsLabelList" type="string[]"  default="['Account Name', 'Account Type']" required="true"/>
+    <aura:attribute name="objAPIname" type="String"  default="Account" 
+                    description="Object API name" required="true"/>
+    <aura:attribute name="sortingOrder" type="String" default="CreatedDate DESC" 
+    			    description="Specify the sorting order of records"/>
+    <aura:attribute name="filterCriteria" type="String" default=""   
+    			    description="Criteria to filter records on UI. Leave blank in order to display all record"/>
+    <aura:attribute name="linkField" type="String" default=""   
+    			    description="Number of records to display on UI"/>
+    <aura:attribute name="recordsLimit" type="String" default="9000"   
+    			    description="Number of records to display on UI"/>
+    
+    <!--section to show/hide spinner starts-->
+    <aura:handler event="aura:waiting" action="{!c.showSpinner}"/>
+    <aura:handler event="aura:doneWaiting" action="{!c.hideSpinner}"/>
+    <div class="slds-align--absolute-center">
+        <lightning:spinner aura:id="spinner" variant="brand" size="large" class="slds=hide"/>
+    </div>
+    <!--/section to show/hide spinner ends-->
+    <div class="main-container">
+    	<div id="tableDiv" style="width:100%;overflow: auto;"></div>
+    </div>
+</aura:component>

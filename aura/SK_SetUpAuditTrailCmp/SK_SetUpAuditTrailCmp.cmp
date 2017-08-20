@@ -1,0 +1,62 @@
+<aura:component controller="SK_SetUpAuditTrailController">
+    <aura:attribute name="ltngFilters" type="Object"/>
+    <aura:attribute name="ltngFilter" type="Object"/>
+    <aura:attribute name="ltngDisplayAddFilterButton" type="boolean" default="false"/>
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <!-- PAGE HEADER -->
+    <div class="slds-page-header" role="banner">
+      <div class="slds-grid">
+        <div class="slds-col">
+          <p class="slds-text-heading--label">SetUp Audit Trail Tracking</p>
+          <h1 class="slds-text-heading--medium">Filter Section</h1>
+        </div>
+      </div>
+    </div>
+    <!-- / PAGE HEADER -->
+
+    <!-- SetUp Audit Trail Filter Section -->
+    <div id="topcontainer">
+        <div class="slds-m-around--large slds-grid slds-wrap slds-form--stacked slds-truncate">
+            <aura:iteration items="{!v.ltngFilters.sFilters}" var="item">
+                <div class="slds-col--padded slds-size--1-of-3 slds-medium--1-of-3 slds-large-size--1-of-3">
+                    <div class="slds-form-element__control">
+                       <lightning:input name="dfdsf" label="" value="{!item.selectedFilter}" disabled="true"/>
+                    </div>
+                </div>
+                <div class="slds-col--padded slds-size--1-of-3 slds-medium--1-of-3 slds-large-size--1-of-3">
+                    <div class="slds-form-element__control">
+                        <lightning:select name="{!item.filterSequence+'filter'}" label="" value="{!item.selectedComparator}" >
+                            <aura:if isTrue="{!item.fieldType == 'text'}">
+                                <option value="Equals">Equals</option>
+                                <option value="Not Equals">Not Equals</option>
+                                <option value="Contains">Contains</option>
+                            </aura:if>
+                            <aura:if isTrue="{!item.fieldType == 'date'}">
+                                <option value="Equals">Equals</option>
+                                <option value="Not Equals">Not Equals</option>
+                                <option value="Less Than">Less Then</option>
+                                <option value="Greater Then">Greater Then</option>
+                            </aura:if>
+                        </lightning:select>
+                    </div>
+                </div>
+                <div class="slds-col--padded slds-size--1-of-3 slds-medium--1-of-3 slds-large-size--1-of-3">
+                    <div class="slds-form-element__control">
+                        <lightning:input type="{!item.fieldType}" name="dfdsf" label="" value="{!item.filterValue}"/>
+                    </div>
+                </div>
+                
+            </aura:iteration>
+            <div class="slds-col--padded slds-size--1-of-1 slds-medium--1-of-1 slds-large-size--1-of-1">
+                <div class="slds-form-element__control">
+                    <lightning:button variant="brand" label="Submit" onclick="{!c.submitFilters }" />
+                </div>
+            </div>
+        </div>
+        <!--div to display for data table displaying setUp Audit Trail Object records ends-->
+        <div aura:id="dataTableSection" />
+    </div>
+    <!-- FOOTER -->
+	<!-- / FOOTER -->
+</aura:component>
