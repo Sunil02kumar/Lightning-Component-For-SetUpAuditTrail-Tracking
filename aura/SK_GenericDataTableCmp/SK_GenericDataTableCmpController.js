@@ -6,7 +6,7 @@
             "c.getAllRelatedRecords",
             function(response) {
                 if(response == 'MALFORMED SOQL STRING'){
-                    alert('Some problem with object configuration in custom setting for this object. Please contact your system administrator,');
+                    alert('Some problem with dynamic SOQL query.');
                 }else{
                 	var tableData = response;
                     
