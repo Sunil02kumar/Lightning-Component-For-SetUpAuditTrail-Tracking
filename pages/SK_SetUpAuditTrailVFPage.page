@@ -2,10 +2,10 @@
     <apex:includeLightning />
 
     <div id="lightning" />
-
+    
     <script>
-        $Lightning.use("skforce:SK_SetUpAuditTrailApp", function() {
-          $Lightning.createComponent("skforce:SK_SetUPAuditTrailCmp",
+        $Lightning.use("c:SK_SetUpAuditTrailApp", function() {
+          $Lightning.createComponent("c:SK_SetUPAuditTrailCmp",
           {  },
           "lightning",
           function(cmp) {
